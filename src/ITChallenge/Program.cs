@@ -9,7 +9,7 @@ namespace ITChallenge
     {
         public static void Main(string[] args)
         {
-            var program = new Program1();
+            var program = new Program0();
             program.Run();
             Console.ReadLine();
         }
