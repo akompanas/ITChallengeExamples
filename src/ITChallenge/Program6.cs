@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace ITChallenge
 {
-    public class Program7
+    public class Program6
     {
         public void Run() // run program
         {
