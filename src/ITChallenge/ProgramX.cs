@@ -5,15 +5,12 @@ using System.Threading.Tasks;
 
 namespace ITChallenge
 {
-    public class Program5
+    public class Program6
     {
         public void Run() // run program
         {
-            if (!IsNotPossible()) // check if it is not possible
-                Console.WriteLine("These vertices make a triangle"); // write output message
-            else // else for (!IsNotPossible())
-                Console.WriteLine("Triangle cannot be made from these vertices"); // write other message
-       }
+            Console.WriteLine(((!IsNotPossible()) ? "" : "Not ") + "Possible"); // write output message
+        }
 
         private bool IsNotPossible() // checks if it is possible to create triangle from different points on the 2D plane. points are entered in tuples of two 32 bit integers
         // if triangle is possible then it will return false and if not possible then will return true because true = !false
