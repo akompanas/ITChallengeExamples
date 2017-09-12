@@ -5,12 +5,12 @@ using System.Threading.Tasks;
 
 namespace ITChallenge
 {
-    public class Program2
+    public class Program3
     {
         public void Run()
         {
-            List<Point> values = ReadData();
-            if (values.Count != 3)
+            Tuple<int, int>[] values = ReadData();
+            if (values.Length != 3)
             {
                 Console.WriteLine("Triangle needs three vertices");
                 return;
@@ -21,7 +21,7 @@ namespace ITChallenge
                 Console.WriteLine("Triangle cannot be made from these vertices");
        }
 
-        private bool IsNotPossible(List<Point> v)
+        private bool IsNotPossible(Tuple<int,int>[] v)
         {
             var e = new List<float>();
             for (int i = 0; i < 3; i++)
@@ -34,29 +34,18 @@ namespace ITChallenge
             return e[0] >= e[1] + e[2];
         }
 
-        private float d(Point p1, Point p2)
+        private float d(Tuple<int,int> p1, Tuple<int,int> p2)
         {
-            return (float)Math.Pow((p1.X - p2.X) * (p1.X - p2.X) + (p1.Y - p2.Y) * (p1.Y - p2.Y), 0.5);
+            return (float)Math.Pow((p1.Item1 - p2.Item1) * (p1.Item1 - p2.Item1) + (p1.Item2 - p2.Item2) * (p1.Item2 - p2.Item2), 0.5);
         }
 
-        private class Point
+        private Tuple<int,int>[] ReadData()
         {
-            public int X { get; }
-            public int Y { get; }
-            public Point(int x, int y)
-            {
-                X = x;
-                Y = y;
-            }
-        }
-
-        private List<Point> ReadData()
-        {
-            var vertices = new List<Point>();
-            vertices.Add(new Point(0, 0));
-            vertices.Add(new Point(1, 0));
-            vertices.Add(new Point(1, 1));
-            return vertices;
+            return new Tuple<int, int>[] {
+                Tuple.Create(0, 0),
+                Tuple.Create(1, 0),
+                Tuple.Create(1, 1)
+            };
         }
     }
 }
