@@ -5,38 +5,38 @@ using System.Threading.Tasks;
 
 namespace ITChallenge
 {
-    public class Program1
+    public class Program2
     {
         public void Run()
         {
-            List<Point> vertices = ReadVertices();
-            if (vertices.Count != 3)
+            List<Point> values = ReadData();
+            if (values.Count != 3)
             {
                 Console.WriteLine("Triangle needs three vertices");
                 return;
             }
-            if (IsTriangle(vertices))
+            if (!IsNotPossible(values))
                 Console.WriteLine("These vertices make a triangle");
             else
                 Console.WriteLine("Triangle cannot be made from these vertices");
        }
 
-        private bool IsTriangle(List<Point> vertices)
+        private bool IsNotPossible(List<Point> v)
         {
-            var edges = new List<float>();
+            var e = new List<float>();
             for (int i = 0; i < 3; i++)
             {
                 int p1 = i;
                 int p2 = (i + 1) % 3;
-                edges.Add(GetDistance(vertices[p1], vertices[p2]));
+                e.Add(d(v[p1], v[p2]));
             }
-            edges.Sort((a, b) => b.CompareTo(a)); // biggest first
-            return edges[0] < edges[1] + edges[2];
+            e.Sort((a, b) => b.CompareTo(a)); // biggest first
+            return e[0] >= e[1] + e[2];
         }
 
-        private float GetDistance(Point p1, Point p2)
+        private float d(Point p1, Point p2)
         {
-            return (float)Math.Sqrt((p1.X - p2.X) * (p1.X - p2.X) + (p1.Y - p2.Y) * (p1.Y - p2.Y));
+            return (float)Math.Pow((p1.X - p2.X) * (p1.X - p2.X) + (p1.Y - p2.Y) * (p1.Y - p2.Y), 0.5);
         }
 
         private class Point
@@ -50,7 +50,7 @@ namespace ITChallenge
             }
         }
 
-        private List<Point> ReadVertices()
+        private List<Point> ReadData()
         {
             var vertices = new List<Point>();
             vertices.Add(new Point(0, 0));
